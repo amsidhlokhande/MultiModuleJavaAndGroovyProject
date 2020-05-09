@@ -30,7 +30,6 @@
         <gmaven-plugin.version>1.5</gmaven-plugin.version>
         <groovy-eclipse-compiler.version>3.6.0-03</groovy-eclipse-compiler.version>
         <groovy-eclipse-batch.version>3.0.3-01</groovy-eclipse-batch.version>
-
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
 
     </properties>
@@ -175,5 +174,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
 </project>
