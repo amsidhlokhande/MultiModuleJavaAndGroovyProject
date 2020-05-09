@@ -1,6 +1,5 @@
 package com.amsidh.mvc;
 
-import com.amsidh.mvc.ServiceJavaImpl;
 import org.junit.Test;
 
 public class ServiceJavaImplTest {
@@ -9,4 +8,5 @@ public class ServiceJavaImplTest {
     public void testShow() {
         new ServiceJavaImpl().show();
     }
+
 }

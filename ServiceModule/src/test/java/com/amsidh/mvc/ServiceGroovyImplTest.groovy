@@ -8,4 +8,9 @@ class ServiceGroovyImplTest  extends GroovyTestCase{
         new ServiceGroovyImpl().message1();
     }
 
+    void testMessage2Groovy(){
+        new ServiceGroovyImpl().message2();
+    }
+
+
 }
