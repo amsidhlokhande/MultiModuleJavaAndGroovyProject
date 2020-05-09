@@ -14,5 +14,11 @@
 *.tar.gz
 *.rar
 
-/.idea/
+*/.idea/*
 MultiModuleJavaAndGroovyProject.iml
+*/target/*
+
+/WebModule/.idea/*
+/WebModule/WebModule.iml
+/ServiceModule/ServiceModule.iml
+/ServiceModule/.idea/*
