@@ -1,5 +1,9 @@
+/target/
 *.class
-*.groovy
+
+*.log
+
+
 
 # Package Files #
 *.jar
@@ -10,5 +14,6 @@
 *.tar.gz
 *.rar
 
+GroovySimpleProject.iml
+
 /.idea/
-/MultiModuleJavaAndGroovyProject.iml
