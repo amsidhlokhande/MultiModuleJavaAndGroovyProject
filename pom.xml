@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>ServiceModule</module>
-        <!--<module>WebModule</module>-->
+        <module>WebModule</module>
     </modules>
 
     <name>MultiModuleJavaAndGroovyProject</name>
@@ -84,31 +84,6 @@
                         </dependency>
                     </dependencies>
                 </plugin>
-
-                <plugin>
-                    <groupId>org.codehaus.gmaven</groupId>
-                    <artifactId>gmaven-plugin</artifactId>
-                    <version>${gmaven-plugin.version}</version>
-                    <configuration>
-                        <providerSelection>${providerSelection.version}</providerSelection>
-                        <source/>
-                        <sourceEncoding>UTF-8</sourceEncoding>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>addSource</goal>
-                                <goal>testCompile</goal>
-                                <goal>generateStubs</goal>
-                                <goal>compile</goal>
-                                <goal>generateTestStubs</goal>
-                                <goal>testCompile</goal>
-
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
@@ -131,19 +106,6 @@
                                 </includes>
                             </configuration>
                         </execution>
-                        <!--<execution>
-                            <id>integration-tests</id>
-                            <phase>integration-test</phase>
-                            <goals>
-                                <goal>test</goal>
-                            </goals>
-                            <configuration>
-                                <skipTests>false</skipTests>
-                                <includes>
-                                    <include>**/*IT.*</include>
-                                </includes>
-                            </configuration>
-                        </execution>-->
                     </executions>
                 </plugin>
                 <plugin>
@@ -202,6 +164,10 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
+                <!--<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+                <sonar.login>0712c471bf2d9ab9e0717d2b73508a3228e55bee</sonar.login>
+                <sonar.organization>amsidhlokhande</sonar.organization>
+-->
                 <sonar.host.url>http://localhost:9000</sonar.host.url>
                 <sonar.login>83945d12b1480fed9af76ba08e64d7d468d0403b</sonar.login>
 
