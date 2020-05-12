@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>ServiceModule</module>
-        <module>WebModule</module>
+        <!--<module>WebModule</module>-->
     </modules>
 
     <name>MultiModuleJavaAndGroovyProject</name>
@@ -31,15 +31,18 @@
         <groovy-eclipse-compiler.version>3.6.0-03</groovy-eclipse-compiler.version>
         <groovy-eclipse-batch.version>3.0.3-01</groovy-eclipse-batch.version>
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-all</artifactId>
                 <version>${groovy-all.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-core</artifactId>
+                <version>1.0-groovy-2.4</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
@@ -62,7 +65,7 @@
                         <target>${java.version}</target>
                         <compilerId>groovy-eclipse-compiler</compilerId>
                     </configuration>
-                    <dependencies>
+                   <dependencies>
                         <dependency>
                             <groupId>org.codehaus.groovy</groupId>
                             <artifactId>groovy-eclipse-compiler</artifactId>
@@ -94,10 +97,13 @@
                     <executions>
                         <execution>
                             <goals>
+                                <goal>addSource</goal>
+                                <goal>testCompile</goal>
                                 <goal>generateStubs</goal>
                                 <goal>compile</goal>
                                 <goal>generateTestStubs</goal>
                                 <goal>testCompile</goal>
+
                             </goals>
                         </execution>
                     </executions>
@@ -121,10 +127,11 @@
                                 <skipTests>false</skipTests>
                                 <includes>
                                     <include>**/*Test.java</include>
+                                    <include>**/*Spec.java</include>
                                 </includes>
                             </configuration>
                         </execution>
-                        <execution>
+                        <!--<execution>
                             <id>integration-tests</id>
                             <phase>integration-test</phase>
                             <goals>
@@ -134,16 +141,23 @@
                                 <skipTests>false</skipTests>
                                 <includes>
                                     <include>**/*IT.*</include>
-                                    <include>**/*Tests.*</include>
                                 </includes>
                             </configuration>
-                        </execution>
+                        </execution>-->
                     </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>${maven-failsafe.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
@@ -173,5 +187,37 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <sourceDirectory>src/main</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>groovy</directory>
+            </resource>
+        </resources>
     </build>
+
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>http://localhost:9000</sonar.host.url>
+                <sonar.login>83945d12b1480fed9af76ba08e64d7d468d0403b</sonar.login>
+
+                <sonar.projectName>${project.artifactId}</sonar.projectName>
+                <sonar.projectVersion>${project.version}</sonar.projectVersion>
+                <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+                <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+                <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+                <sonar.scm.disabled>true</sonar.scm.disabled>
+                <sonar.java.libraries.empty>true</sonar.java.libraries.empty>
+
+                <sonar.sources>/src/main</sonar.sources>
+                <sonar.tests>src/test</sonar.tests>
+                <sonar.exclusions>**/*.xml, generated/**/*.java, **/library/*.java, **/*.sql, **/node_modules/**, **/*.spec.ts</sonar.exclusions>
+            </properties>
+
+        </profile>
+    </profiles>
 </project>
