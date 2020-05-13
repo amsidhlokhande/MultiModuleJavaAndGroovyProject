@@ -1,12 +1,12 @@
 package com.amsidh.groovy
 
 class OperationGroovyServiceTest extends GroovyTestCase{
-
+    def operationGroovyService = new OperationGroovyService();
     void testAdd(){
-        new OperationGroovyService().add();
+        operationGroovyService.add();
     }
 
     void testSub(){
-        new OperationGroovyService().sub();
+        operationGroovyService.sub();
     }
 }
