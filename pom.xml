@@ -149,11 +149,33 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <sourceDirectory>src/main</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>groovy</directory>
-            </resource>
-        </resources>
     </build>
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+                <sonar.login>0712c471bf2d9ab9e0717d2b73508a3228e55bee</sonar.login>
+                <sonar.organization>amsidhlokhande</sonar.organization>
+                <!--
+                <sonar.host.url>http://localhost:9000</sonar.host.url>
+                <sonar.login>83945d12b1480fed9af76ba08e64d7d468d0403b</sonar.login>
+                -->
+                <sonar.projectName>${project.artifactId}</sonar.projectName>
+                <sonar.projectVersion>${project.version}</sonar.projectVersion>
+                <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+                <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+                <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+                <sonar.scm.disabled>true</sonar.scm.disabled>
+                <sonar.java.libraries.empty>true</sonar.java.libraries.empty>
+
+                <sonar.sources>/src/main</sonar.sources>
+                <sonar.tests>src/test</sonar.tests>
+                <sonar.exclusions>**/*.xml, generated/**/*.java, **/library/*.java, **/*.sql, **/node_modules/**, **/*.spec.ts</sonar.exclusions>
+            </properties>
+        </profile>
+    </profiles>
 </project>
